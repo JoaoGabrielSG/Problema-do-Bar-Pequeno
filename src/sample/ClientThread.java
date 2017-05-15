@@ -54,6 +54,7 @@ public class ClientThread extends Thread {
             }
 
             this.drinking();
+            System.out.print("Esta voltando para o bar:" + this.getName() + "\n");
 
             try {
                 mutex1.acquire();
@@ -62,33 +63,31 @@ public class ClientThread extends Thread {
             }
             eating -= 1;
             if (eating == 0){
-                waiting -= 1;
-                eating += 1;
                 must_wait = (eating == 5);
-                mutex2.release(5);
+                mutex2.release();
             }
 
             this.goHome();
+            System.out.print("Acabou de beber:" + this.getName() + "\n");
 
             mutex1.release();
-
-
         }
     }
 
     private void goHome(){
-        for(int i = 0; i < 5000000; i++){
-            for(int j = 0; j < 10000000; j++){
-                System.out.print("Esta voltando para o bar:" + this.getName() + "\n");
-            }
-        }
+        wait(20000);
+//        for(int i = 0; i < 999999999; i++){
+//            for(int j = 0; j < 999999999; j++){
+//            }
+//        }
     }
 
     private void drinking() {
-        for(int i = 0; i < 500000000; i++){
-            for(int j = 0; j < 10000000; j++){
-                System.out.print("Acabou de beber:" + this.getName() + "\n");
-            }
-        }
+        wait(20000);
+//        for(int i = 0; i < 999999999; i++){
+//            for(int j = 0; j < 999999999; j++){
+//
+//            }
+//        }
     }
 }
