@@ -17,7 +17,7 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Button fx:id="myButton" mnemonicParsing="false" text="Criar Cliente" translateX="-600.0" translateY="-300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button fx:id="myButton" mnemonicParsing="false" text="Criar Cliente" translateX="-100.0" translateY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Button fx:id="test" mnemonicParsing="false" text="Button" />
    </children>
 </GridPane>

@@ -13,6 +13,7 @@ import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
 import javafx.fxml.Initializable
 import javafx.scene.Parent
+import javafx.scene.Scene
 import javafx.scene.control.Button
 import javafx.scene.layout.Pane
 import javax.swing.plaf.RootPaneUI
@@ -41,7 +42,7 @@ class ViewController {
         clients[2].sittingDuration = 15000
         clients[3].sittingDuration = 20000
         clients[4].sittingDuration = 25000
-        clients[5].sittingDuration = 5000
+        clients[5].sittingDuration = 10000
 
         clients.forEach { c ->
             c.onEnterBar = {
@@ -61,6 +62,6 @@ class ViewController {
             clients.forEach { c -> c.start(); c.enterBar(bar) }
         }
 
-        runClients()
+        myButton.setOnAction { runClients() }
     }
 }

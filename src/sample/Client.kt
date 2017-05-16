@@ -30,6 +30,12 @@ class Client(name: String): Thread(name) {
     var onLeaveBar: (() -> Unit)? = null
     fun leaveBar() {
         bar?.chairs?.release()
+
+        if(bar?.isEmpty() == true && bar?.isReserved() == true) {
+            bar?.reserve?.release()
+            print("bar liberado\n")
+        }
+
         bar = null
         state = State.Outside
         onLeaveBar?.invoke()
@@ -37,7 +43,14 @@ class Client(name: String): Thread(name) {
 
     var onSit: (() -> Unit)? = null
     private fun waitForSeat(callback: (() -> Unit)? = null) {
+
+        bar?.reserve?.acquire()
         bar?.chairs?.acquire()
+
+        if(bar?.isFull() == false) {
+            bar?.reserve?.release()
+        }
+
         state = State.Seated
         onSit?.invoke()
         callback?.invoke()
