@@ -47,9 +47,10 @@ class Client(name: String): Thread(name) {
         bar?.reserve?.acquire()
         bar?.chairs?.acquire()
 
-        if(bar?.isFull() == false) {
+        if(bar?.isFull() == false)
             bar?.reserve?.release()
-        }
+        else
+            print("bar reservado\n")
 
         state = State.Seated
         onSit?.invoke()
