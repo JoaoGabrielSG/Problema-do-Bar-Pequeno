@@ -27,15 +27,10 @@ import javafx.scene.input.KeyCode
 
 
 class ViewController: GameApplication() {
-    @FXML
-    private lateinit var myButton: Button
-
-    @FXML
-    private lateinit var test: Button
 
     override fun initSettings(p0: GameSettings?) {
-        p0?.width = 1280
-        p0?.height = 720
+        p0?.width = 800
+        p0?.height = 600
         p0?.title = "pitombeira simulator 2017"
         p0?.version = "0.1.0 [alpha] "
         p0?.isProfilingEnabled = false
@@ -48,7 +43,7 @@ class ViewController: GameApplication() {
     override fun initInput() {
         input.addAction(object : UserAction("Jump") {
             override fun onActionBegin() {
-                print("jumo")
+                print("jump")
             }
         }, KeyCode.SPACE)
     }
@@ -58,40 +53,14 @@ class ViewController: GameApplication() {
     }
 
     override fun initGame() {
-        //initBackground();
-        //initPlayer();
-
-        //initBackgroundMusic();
-    }
-
-    override fun initUI() {
-        val uiScore = uiFactory.newText("", 72.0)
-        uiScore.translateX = (width - 200.0)
-        uiScore.translateY = 50.0
-        //uiScore.fillProperty().bind(gameState.objectProperty<T>("stageColor"))
-        //uiScore.textProperty().bind(getMasterTimer().tickProperty().asString());
-
-        gameScene.addUINode(uiScore)
-    }
-
-    override fun onPostUpdate(tpf: Double) {
-
-    }
-
-
-
-
-    @FXML
-    fun initialize() {
-
         val bar = Bar(5)
 
         val clients = listOf(Client("Matheus"),
-                             Client("Gabi"),
-                             Client("João Gonça"),
-                             Client("Paul Harris"),
-                             Client("Parente"),
-                             Client("Random"))
+                Client("Gabi"),
+                Client("João Gonça"),
+                Client("Paul Harris"),
+                Client("Parente"),
+                Client("Random"))
 
         clients[0].sittingDuration = 10000
         clients[1].sittingDuration = 10000
@@ -118,7 +87,21 @@ class ViewController: GameApplication() {
             clients.forEach { c -> c.start(); c.enterBar(bar) }
         }
 
-        myButton.setOnAction { runClients() }
+        runClients()
+    }
+
+    override fun initUI() {
+        val uiScore = uiFactory.newText("", 72.0)
+        uiScore.translateX = (width - 200.0)
+        uiScore.translateY = 50.0
+        //uiScore.fillProperty().bind(gameState.objectProperty<T>("stageColor"))
+        //uiScore.textProperty().bind(getMasterTimer().tickProperty().asString());
+
+        gameScene.addUINode(uiScore)
+    }
+
+    override fun onPostUpdate(tpf: Double) {
+
     }
 
     fun main(args: Array<String>) {

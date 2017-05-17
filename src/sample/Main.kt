@@ -7,5 +7,4 @@ package barproblem
 fun main(args : Array<String>) {
     val viewController = ViewController()
     viewController.main(args)
-    //viewController.
 }
