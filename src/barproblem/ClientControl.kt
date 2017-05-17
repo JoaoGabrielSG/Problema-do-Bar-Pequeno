@@ -16,6 +16,8 @@ class ClientControl(name: String, sittingDuration: Long): AbstractControl() {
 
     val client get() = this.entity as Client
 
+    var chair = -1
+
     override fun onAdded(entity: Entity?) {
         thread.start()
 
@@ -24,8 +26,13 @@ class ClientControl(name: String, sittingDuration: Long): AbstractControl() {
             //position.translateTowards(Point2D(512.0, 400.0), 10.0)
         }
 
-        thread.onSit = {
-            print(thread.name + " sentou.\n")
+        thread.willSit = {
+            print(thread.name + " está tentando sentar.\n")
+        }
+
+        thread.onSit = { chair ->
+            this.chair = chair
+            print(thread.name + " sentou na cadeira + " + chair + ".\n")
             //position.translateTowards(Point2D(512.0, 712.0), 10.0)
         }
 
@@ -35,7 +42,11 @@ class ClientControl(name: String, sittingDuration: Long): AbstractControl() {
     }
 
     override fun onUpdate(p0: Entity?, p1: Double) {
-
+        if(thread.state == ClientThread.State.Seated) {
+            client.position.translateTowards(Point2D(200.0 + chair * 64.0, 200.0), p1 * 100.0)
+        } else if(thread.state == ClientThread.State.Left) {
+            client.position.translateTowards(Point2D(2000.0, 2000.0), p1 * 100.0)
+        }
     }
 
     fun enterBar(bar: Bar) {

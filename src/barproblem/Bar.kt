@@ -7,9 +7,12 @@ import java.util.*
 import java.util.concurrent.Semaphore
 
 class Bar(chairCount: Int) {
-    var chairCount = chairCount
+    val chairCount = chairCount
     var chairs = Semaphore(chairCount)
     var reserve = Semaphore(1)
+    var check = Semaphore(1)
+
+    val nextChair get() = chairCount - chairs.availablePermits()
 
     fun isFull(): Boolean {
         return chairs.availablePermits() == 0

@@ -71,6 +71,7 @@ public class ClientThread extends Thread {
             System.out.print("Acabou de beber:" + this.getName() + "\n");
 
             mutex1.release();
+            this.goHome();
         }
     }
 

@@ -31,6 +31,8 @@ import javafx.scene.input.KeyCode
 
 class Game : GameApplication() {
 
+    val bar = Bar(5)
+
     override fun initSettings(p0: GameSettings?) {
         p0?.width = 800
         p0?.height = 600
@@ -58,22 +60,21 @@ class Game : GameApplication() {
     override fun initGame() {
 
         initBackground()
+        initCreateButton()
 
-        val bar = Bar(5)
-
-        val controls = listOf(ClientControl("Matheus", 10000),
-                             ClientControl("Gabi", 15000),
-                             ClientControl("João Gonça", 20000),
-                             ClientControl("Paul Harris", 15000),
-                             ClientControl("Parente", 10000),
-                             ClientControl("Random", 15000))
+        /*al controls = listOf(ClientControl("Matheus", 10000),
+                ClientControl("Gabi", 15000),
+                ClientControl("João Gonça", 20000),
+                ClientControl("Paul Harris", 15000),
+                ClientControl("Parente", 10000),
+                ClientControl("Random", 5000))
 
         controls.map { control ->
             val client = Client()
             client.addControl(control)
             gameWorld.addEntity(client)
             control.enterBar(bar)
-        }
+        }*/
     }
 
     fun initBackground() {
@@ -82,6 +83,25 @@ class Game : GameApplication() {
         val bg = Entities.builder()
                 .at(0.0, 0.0)
                 .viewFromNode(view)
+                .buildAndAttach(gameWorld)
+    }
+
+    var client_number = 0
+    fun initCreateButton() {
+        val button = Button("criar")
+
+        button.setOnAction {
+            val control = ClientControl("cliente_" + client_number, 1000L + client_number*500)
+
+            val client = Client()
+            client.addControl(control)
+            gameWorld.addEntity(client)
+            control.enterBar(bar)
+        }
+
+        Entities.builder()
+                .at(500.0, 500.0)
+                .viewFromNode(button)
                 .buildAndAttach(gameWorld)
     }
 
