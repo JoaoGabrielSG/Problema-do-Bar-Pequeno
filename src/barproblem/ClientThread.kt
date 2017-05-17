@@ -4,7 +4,7 @@ package barproblem
  * Created by matheusmartins on 5/15/17.
  */
 
-class Client(name: String): Thread(name) {
+class ClientThread(name: String, sittingDuration: Long): Thread(name) {
 
     enum class State {
         Outside,
@@ -18,7 +18,7 @@ class Client(name: String): Thread(name) {
     var state: State = State.Outside
         private set
 
-    var sittingDuration = 10000L
+    var sittingDuration = sittingDuration
 
     var onEnterBar: ((bar: Bar) -> Unit)? = null
     fun enterBar(bar: Bar) {

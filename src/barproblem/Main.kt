@@ -5,6 +5,6 @@ package barproblem
  */
 
 fun main(args : Array<String>) {
-    val viewController = ViewController()
+    val viewController = Game()
     viewController.main(args)
 }

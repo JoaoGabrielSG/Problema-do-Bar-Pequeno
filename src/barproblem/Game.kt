@@ -26,7 +26,7 @@ import javafx.scene.input.KeyCode
 
 
 
-class ViewController: GameApplication() {
+class Game : GameApplication() {
 
     override fun initSettings(p0: GameSettings?) {
         p0?.width = 800
@@ -55,39 +55,19 @@ class ViewController: GameApplication() {
     override fun initGame() {
         val bar = Bar(5)
 
-        val clients = listOf(Client("Matheus"),
-                Client("Gabi"),
-                Client("João Gonça"),
-                Client("Paul Harris"),
-                Client("Parente"),
-                Client("Random"))
+        val controls = listOf(ClientControl("Matheus", 10000),
+                             ClientControl("Gabi", 15000),
+                             ClientControl("João Gonça", 20000),
+                             ClientControl("Paul Harris", 15000),
+                             ClientControl("Parente", 10000),
+                             ClientControl("Random", 15000))
 
-        clients[0].sittingDuration = 10000
-        clients[1].sittingDuration = 10000
-        clients[2].sittingDuration = 15000
-        clients[3].sittingDuration = 20000
-        clients[4].sittingDuration = 25000
-        clients[5].sittingDuration = 10000
-
-        clients.forEach { c ->
-            c.onEnterBar = {
-                print(c.name + " entrou no bar.\n")
-            }
-
-            c.onSit = {
-                print(c.name + " sentou.\n")
-            }
-
-            c.onLeaveBar = {
-                print(c.name + " saiu do bar.\n")
-            }
+        controls.map { control ->
+            val client = Client()
+            client.addControl(control)
+            gameWorld.addEntity(client)
+            control.enterBar(bar)
         }
-
-        fun runClients() {
-            clients.forEach { c -> c.start(); c.enterBar(bar) }
-        }
-
-        runClients()
     }
 
     override fun initUI() {
