@@ -21,7 +21,10 @@ import javafx.scene.paint.*
 import com.almasb.fxgl.app.*
 import com.almasb.fxgl.settings.*
 import com.almasb.fxgl.input.*
+import com.almasb.fxgl.entity.*
 import javafx.application.Application
+import javafx.scene.image.Image
+import javafx.scene.image.ImageView
 import javafx.scene.input.KeyCode
 
 
@@ -53,6 +56,9 @@ class Game : GameApplication() {
     }
 
     override fun initGame() {
+
+        initBackground()
+
         val bar = Bar(5)
 
         val controls = listOf(ClientControl("Matheus", 10000),
@@ -68,6 +74,15 @@ class Game : GameApplication() {
             gameWorld.addEntity(client)
             control.enterBar(bar)
         }
+    }
+
+    fun initBackground() {
+        val view = assetLoader.loadTexture("background.png", 800.0, 600.0)
+
+        val bg = Entities.builder()
+                .at(0.0, 0.0)
+                .viewFromNode(view)
+                .buildAndAttach(gameWorld)
     }
 
     override fun initUI() {
