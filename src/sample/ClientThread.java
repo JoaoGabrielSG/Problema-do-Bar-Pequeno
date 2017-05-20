@@ -13,8 +13,8 @@ public class ClientThread extends Thread {
     int tempo_casa;
     boolean must_wait;
 
-    Semaphore mutex1;
-    Semaphore mutex2;
+    public static Semaphore mutex1;
+    public static Semaphore mutex2;
 
     public ClientThread(String name, int tempo_bar, int tempo_casa) {
         super(name);
@@ -30,7 +30,7 @@ public class ClientThread extends Thread {
 
     }
 
-    public void run(){
+    public void run(Animations animation){
 
         while(true){
             try {
@@ -53,8 +53,12 @@ public class ClientThread extends Thread {
                 mutex1.release();
             }
 
-            this.drinking();
-            System.out.print("Esta voltando para o bar:" + this.getName() + "\n");
+            try {
+                this.drinking(animation);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
 
             try {
                 mutex1.acquire();
@@ -63,31 +67,35 @@ public class ClientThread extends Thread {
             }
             eating -= 1;
             if (eating == 0){
+                int n = (5 < waiting) ? 5 : waiting;
+                waiting -= n;
+                eating += n;
+
                 must_wait = (eating == 5);
                 mutex2.release();
             }
-
-            this.goHome();
-            System.out.print("Acabou de beber:" + this.getName() + "\n");
-
             mutex1.release();
+
+            try {
+                this.goHome(animation);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private void goHome(){
-        wait(20000);
-//        for(int i = 0; i < 999999999; i++){
-//            for(int j = 0; j < 999999999; j++){
-//            }
-//        }
+    private void goHome(Animations animation) throws InterruptedException {
+//        System.out.print("Esta indo para casa:" + this.getName() + "\n");
+        animation.goHome(this.getName());
+        sleep(tempo_casa);
+//        System.out.print("Esta voltando para o bar:" + this.getName() + "\n");
     }
 
-    private void drinking() {
-        wait(20000);
-//        for(int i = 0; i < 999999999; i++){
-//            for(int j = 0; j < 999999999; j++){
-//
-//            }
-//        }
+    private void drinking(Animations animation) throws InterruptedException {
+//        System.out.print("Comecando a beber:" + this.getName() + "\n");
+        animation.goBar(this.getName());
+        sleep(tempo_bar);
+//        System.out.print("Terminou de beber:" + this.getName() + "\n");
     }
+
 }
