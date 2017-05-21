@@ -26,30 +26,25 @@ public class Controller{
     @FXML
     private Button test;
 
-    @FXML
-    private Circle italo;
+    public Animations animation = new Animations() {
+        @Override
+        public void goBar(String name) {
+//            System.out.print("Comecando a beber:" + name + "\n");
+        }
 
-    @FXML
-    private javafx.scene.shape.Rectangle yuri;
+        @Override
+        public void goHome(String name) {
+
+//            System.out.print("Esta indo para casa:" + name + "\n");
+        }
+    };
 
     @FXML
     public void initialize() {
 
-        Animations animation = new Animations() {
-            @Override
-            public void goBar(String name) {
-                System.out.print("Comecando a beber:" + name + "\n");
-            }
-
-            @Override
-            public void goHome(String name) {
-                System.out.print("Esta indo para casa:" + name + "\n");
-            }
-        };
-
         ClientThread cliente = new ClientThread("italo", 2000, 2000);
 
-        ClientThread cliente2 = new ClientThread("yuri", 10000, 10000);
+        ClientThread cliente2 = new ClientThread("yuri", 500, 500);
 
         myButton.setOnAction((ActionEvent event) -> {
             cliente.run(animation);

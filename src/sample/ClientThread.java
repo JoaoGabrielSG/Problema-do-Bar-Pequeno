@@ -85,17 +85,17 @@ public class ClientThread extends Thread {
     }
 
     private void goHome(Animations animation) throws InterruptedException {
-//        System.out.print("Esta indo para casa:" + this.getName() + "\n");
+        System.out.print("Esta indo para casa:" + this.getName() + "\n");
         animation.goHome(this.getName());
         sleep(tempo_casa);
-//        System.out.print("Esta voltando para o bar:" + this.getName() + "\n");
+        System.out.print("Esta voltando para o bar:" + this.getName() + "\n");
     }
 
     private void drinking(Animations animation) throws InterruptedException {
-//        System.out.print("Comecando a beber:" + this.getName() + "\n");
+        System.out.print("Comecando a beber:" + this.getName() + "\n");
         animation.goBar(this.getName());
         sleep(tempo_bar);
-//        System.out.print("Terminou de beber:" + this.getName() + "\n");
+        System.out.print("Terminou de beber:" + this.getName() + "\n");
     }
 
 }
