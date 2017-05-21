@@ -8,21 +8,36 @@ import java.util.concurrent.Semaphore
 
 class Bar(chairCount: Int) {
     val chairCount = chairCount
-    var chairs = Semaphore(chairCount)
-    var reserve = Semaphore(1)
-    var check = Semaphore(1)
 
-    val nextChair get() = chairCount - chairs.availablePermits()
+    var mutex = Semaphore(1)
+    var block = Semaphore(0)
 
-    fun isFull(): Boolean {
-        return chairs.availablePermits() == 0
+    var sitting = 0
+    var waiting = 0
+
+    fun enter(callback: (willWait: Boolean) -> Unit) {
+        mutex.acquire()
+        if (sitting == chairCount) {
+            waiting += 1
+            mutex.release()
+            callback?.invoke(true)
+            block.acquire()
+        } else {
+            sitting += 1
+            callback?.invoke(false)
+            mutex.release()
+        }
     }
 
-    fun isEmpty(): Boolean {
-        return chairs.availablePermits() == chairCount
-    }
-
-    fun isReserved(): Boolean {
-        return reserve.availablePermits() == 0
+    fun leave() {
+        mutex.acquire()
+        sitting -= 1
+        if (sitting == 0) {
+            val n = minOf(5, waiting)
+            waiting -= n
+            sitting += n
+            block.release()
+        }
+        mutex.release()
     }
 }

@@ -14,7 +14,7 @@ import javafx.fxml.FXMLLoader
 import javafx.fxml.Initializable
 import javafx.scene.Parent
 import javafx.scene.Scene
-import javafx.scene.control.Button
+import javafx.scene.control.*
 import javafx.scene.layout.Pane
 import javax.swing.plaf.RootPaneUI
 import javafx.scene.paint.*
@@ -87,21 +87,37 @@ class Game : GameApplication() {
     }
 
     var client_number = 0
+    var client_name = "client"
+    var client_sittingTime = 10000
     fun initCreateButton() {
-        val button = Button("criar")
 
+        val nameTextField = TextField("Joselito")
+        nameTextField.setOnAction {
+            client_name = nameTextField.text
+        }
+
+        val sittingTimeTextField = TextField("10000")
+        sittingTimeTextField.setOnAction {
+            if(Int.)
+        }
+
+        val button = Button("criar")
         button.setOnAction {
-            val control = ClientControl("cliente_" + client_number, 1000L + client_number*500)
+            val control = ClientControl(nameTextField.text, bar, 10000L + client_number++*1000)
 
             val client = Client()
             client.addControl(control)
             gameWorld.addEntity(client)
-            control.enterBar(bar)
         }
 
         Entities.builder()
                 .at(500.0, 500.0)
                 .viewFromNode(button)
+                .buildAndAttach(gameWorld)
+
+        Entities.builder()
+                .at(500.0, 480.0)
+                .viewFromNode(textField)
                 .buildAndAttach(gameWorld)
     }
 

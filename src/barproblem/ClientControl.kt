@@ -10,17 +10,15 @@ import com.almasb.fxgl.entity.component.*
 import com.almasb.fxgl.entity.*
 import javafx.geometry.*
 
-class ClientControl(name: String, sittingDuration: Long): AbstractControl() {
+class ClientControl(name: String, bar: Bar, sittingDuration: Long): AbstractControl() {
 
-    val thread = ClientThread(name, sittingDuration)
+    val thread = ClientThread(name, bar, sittingDuration)
 
     val client get() = this.entity as Client
 
     var chair = -1
 
     override fun onAdded(entity: Entity?) {
-        thread.start()
-
         thread.onEnterBar = {
             print(thread.name + " entrou no bar.\n")
             //position.translateTowards(Point2D(512.0, 400.0), 10.0)
@@ -39,6 +37,8 @@ class ClientControl(name: String, sittingDuration: Long): AbstractControl() {
         thread.onLeaveBar = {
             print(thread.name + " saiu do bar.\n")
         }
+
+        thread.start()
     }
 
     override fun onUpdate(p0: Entity?, p1: Double) {
@@ -47,9 +47,5 @@ class ClientControl(name: String, sittingDuration: Long): AbstractControl() {
         } else if(thread.state == ClientThread.State.Left) {
             client.position.translateTowards(Point2D(2000.0, 2000.0), p1 * 100.0)
         }
-    }
-
-    fun enterBar(bar: Bar) {
-        thread.enterBar(bar)
     }
 }

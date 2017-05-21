@@ -6,52 +6,41 @@ package barproblem
 
 import java.util.*
 
-class ClientThread(name: String, sittingDuration: Long): Thread(name) {
+class ClientThread(name: String, bar: Bar, sittingDuration: Long): Thread(name) {
 
     enum class State {
         Outside,
-        Inside,
+        Waiting,
         Seated,
         Left
     }
 
-    var bar: Bar? = null
+    var bar: Bar = bar
         private set
 
     var state: State = State.Outside
         private set
 
     var satTime = -1L
+        private set
+
     var sittingDuration = sittingDuration
 
-    var onEnterBar: ((bar: Bar) -> Unit)? = null
-    fun enterBar(bar: Bar) {
-        this.bar = bar
-        state = State.Inside
-        onEnterBar?.invoke(bar)
+    fun scratch(duration: Long) {
+        val time = Date().time
+        while (Date().time < time + duration) { ; }
+    }
+
+    var onEnterBar: (() -> Unit)? = null
+    fun enterBar() {
+        state = State.Waiting
+        onEnterBar?.invoke()
     }
 
     var onLeaveBar: (() -> Unit)? = null
     fun leaveBar() {
-        val bar = this.bar!!
-
-        bar.chairs.release()
-
-        bar.check.acquire()
-        val isEmpty = bar.isEmpty()
-        bar.check.release()
-
-        bar.check.acquire()
-        val isReserved = bar.isReserved()
-        bar.check.release()
-
-        if(isEmpty == true && isReserved == true) {
-            bar.reserve.release()
-            print("bar liberado\n")
-        }
-
-        this.bar = null
-        state = State.Left
+        bar.leave()
+        this.state = State.Left
         onLeaveBar?.invoke()
     }
 
@@ -59,35 +48,21 @@ class ClientThread(name: String, sittingDuration: Long): Thread(name) {
     var onSit: ((chair: Int) -> Unit)? = null
     private fun waitForSeat(callback: (() -> Unit)? = null) {
 
-        val bar = this.bar!!
+        bar.enter { willWait ->
+            if(willWait) {
+                this.state = State.Waiting
+            }
+        }
 
-        willSit?.invoke()
+        this.state = State.Seated
+        onSit?.invoke(bar.sitting)
 
-        bar.reserve.acquire()
-        bar.chairs.acquire()
-
-        bar.check.acquire()
-        val isFull = bar.isFull()
-        val nextChair = bar.nextChair
-        bar.check.release()
-
-        if(isFull == false)
-            bar?.reserve?.release()
-        else
-            print("bar reservado\n")
-
-        satTime = Date().time
-        state = State.Seated
-
-        onSit?.invoke(nextChair)
         callback?.invoke()
     }
 
     override fun run() {
-        while(bar == null) { ; }
         waitForSeat {
-            while(Date().time < satTime + sittingDuration) { ; }
-            sleep(sittingDuration)
+            scratch(sittingDuration)
             leaveBar()
         }
     }
