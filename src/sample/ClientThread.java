@@ -31,7 +31,6 @@ public class ClientThread extends Thread {
         this.mutex2 = new Semaphore(0);
 
         this.animation = animation;
-
     }
 
     public void run(){

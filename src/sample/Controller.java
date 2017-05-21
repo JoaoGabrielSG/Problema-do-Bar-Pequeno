@@ -26,16 +26,24 @@ public class Controller{
     @FXML
     private Button test;
 
+    @FXML
+    private Circle italo;
+    @FXML
+    private Circle yuri;
+
     public Animations animation = new Animations() {
         @Override
         public void goBar(String name) {
             System.out.print("Comecando a beber:" + name + "\n");
+            yuri.setTranslateX(100);
         }
 
         @Override
         public void goHome(String name) {
 
             System.out.print("Esta indo para casa:" + name + "\n");
+
+            yuri.setTranslateX(200);
         }
     };
 
