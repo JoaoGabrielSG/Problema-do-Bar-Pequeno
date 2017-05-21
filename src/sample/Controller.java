@@ -12,7 +12,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.*;
 import javafx.animation.Animation;
@@ -20,46 +22,49 @@ import javafx.util.Duration;
 import javax.swing.plaf.RootPaneUI;
 
 public class Controller{
+
+    @FXML
+    private AnchorPane anchor;
+
     @FXML
     private Button myButton;
 
     @FXML
-    private Button test;
+    private javafx.scene.control.TextField name;
 
     @FXML
-    private Circle italo;
+    private javafx.scene.control.TextField tempoCasa;
+
     @FXML
-    private Circle yuri;
+    private javafx.scene.control.TextField tempoBar;
 
     public Animations animation = new Animations() {
         @Override
-        public void goBar(String name) {
-            System.out.print("Comecando a beber:" + name + "\n");
-            yuri.setTranslateX(100);
+        public void goBar(ClientThread client) {
+            System.out.print("Comecando a beber:" + client.getName() + "\n");
+
+            client.clienteSprite.setTranslateX(200.0);
         }
 
         @Override
-        public void goHome(String name) {
+        public void goHome(ClientThread client) {
 
-            System.out.print("Esta indo para casa:" + name + "\n");
+            System.out.print("Esta indo para casa:" + client.getName() + "\n");
 
-            yuri.setTranslateX(200);
+            client.clienteSprite.setTranslateX(300.0);
         }
     };
 
     @FXML
     public void initialize() {
 
-        ClientThread cliente = new ClientThread("italo", 2000, 2000, animation);
-
-        ClientThread cliente2 = new ClientThread("yuri", 500, 500, animation);
-
         myButton.setOnAction((ActionEvent event) -> {
-            cliente.start();
-        });
 
-        test.setOnAction((ActionEvent event) -> {
-            cliente2.start();
+            ClientThread cliente = new ClientThread(name.getText(), Integer.parseInt(tempoBar.getText()), Integer.parseInt(tempoCasa.getText()), animation);
+
+            cliente.start();
+
+            anchor.getChildren().add(cliente.clienteSprite);
         });
     }
 

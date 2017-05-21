@@ -1,6 +1,8 @@
 package sample;
 
+import java.text.SimpleDateFormat;
 import java.util.concurrent.Semaphore;
+import javafx.scene.shape.*;
 
 /**
  * Created by João Gabriel on 13/05/2017.
@@ -16,6 +18,8 @@ public class ClientThread extends Thread {
     public static Semaphore mutex1;
     public static Semaphore mutex2;
 
+    public Circle clienteSprite;
+
     Animations animation;
 
     public ClientThread(String name, int tempo_bar, int tempo_casa, Animations animation) {
@@ -29,6 +33,8 @@ public class ClientThread extends Thread {
 
         this.mutex1 = new Semaphore(1);
         this.mutex2 = new Semaphore(0);
+
+        this.clienteSprite = new Circle(100.0, 100.0, 5.0);
 
         this.animation = animation;
     }
@@ -57,7 +63,7 @@ public class ClientThread extends Thread {
             }
 
             try {
-                this.drinking(animation);
+                this.drinking(this);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -80,23 +86,28 @@ public class ClientThread extends Thread {
             mutex1.release();
 
             try {
-                this.goHome(animation);
+                this.goHome(this);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private void goHome(Animations animation) throws InterruptedException {
-//        System.out.print("Esta indo para casa:" + this.getName() + "\n");
-        animation.goHome(this.getName());
-        sleep(tempo_casa);
-//        System.out.print("Esta voltando para o bar:" + this.getName() + "\n");
+    private void goHome(ClientThread client) throws InterruptedException {
+        SimpleDateFormat time = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        long start = time.getCalendar().getTimeInMillis();
+
+        while ((time.getCalendar().getTimeInMillis() - start) < (long) tempo_casa && eating < 5) {
+
+            time = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        }
+        animation.goHome(this);
     }
 
-    private void drinking(Animations animation) throws InterruptedException {
+
+    private void drinking(ClientThread client) throws InterruptedException {
 //        System.out.print("Comecando a beber:" + this.getName() + "\n");
-        animation.goBar(this.getName());
+        animation.goBar(this);
         sleep(tempo_bar);
 //        System.out.print("Terminou de beber:" + this.getName() + "\n");
     }

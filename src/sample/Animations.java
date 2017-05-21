@@ -5,6 +5,6 @@ package sample;
  */
 public interface Animations {
 
-    void goBar(String name);
-    void goHome(String name);
+    void goBar(ClientThread client);
+    void goHome(ClientThread client);
 }
