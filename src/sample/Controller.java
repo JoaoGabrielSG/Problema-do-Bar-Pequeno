@@ -29,29 +29,29 @@ public class Controller{
     public Animations animation = new Animations() {
         @Override
         public void goBar(String name) {
-//            System.out.print("Comecando a beber:" + name + "\n");
+            System.out.print("Comecando a beber:" + name + "\n");
         }
 
         @Override
         public void goHome(String name) {
 
-//            System.out.print("Esta indo para casa:" + name + "\n");
+            System.out.print("Esta indo para casa:" + name + "\n");
         }
     };
 
     @FXML
     public void initialize() {
 
-        ClientThread cliente = new ClientThread("italo", 2000, 2000);
+        ClientThread cliente = new ClientThread("italo", 2000, 2000, animation);
 
-        ClientThread cliente2 = new ClientThread("yuri", 500, 500);
+        ClientThread cliente2 = new ClientThread("yuri", 500, 500, animation);
 
         myButton.setOnAction((ActionEvent event) -> {
-            cliente.run(animation);
+            cliente.start();
         });
 
         test.setOnAction((ActionEvent event) -> {
-            cliente2.run(animation);
+            cliente2.start();
         });
     }
 

@@ -16,7 +16,9 @@ public class ClientThread extends Thread {
     public static Semaphore mutex1;
     public static Semaphore mutex2;
 
-    public ClientThread(String name, int tempo_bar, int tempo_casa) {
+    Animations animation;
+
+    public ClientThread(String name, int tempo_bar, int tempo_casa, Animations animation) {
         super(name);
 
         this.tempo_bar = tempo_bar;
@@ -28,9 +30,11 @@ public class ClientThread extends Thread {
         this.mutex1 = new Semaphore(1);
         this.mutex2 = new Semaphore(0);
 
+        this.animation = animation;
+
     }
 
-    public void run(Animations animation){
+    public void run(){
 
         while(true){
             try {
@@ -85,17 +89,17 @@ public class ClientThread extends Thread {
     }
 
     private void goHome(Animations animation) throws InterruptedException {
-        System.out.print("Esta indo para casa:" + this.getName() + "\n");
+//        System.out.print("Esta indo para casa:" + this.getName() + "\n");
         animation.goHome(this.getName());
         sleep(tempo_casa);
-        System.out.print("Esta voltando para o bar:" + this.getName() + "\n");
+//        System.out.print("Esta voltando para o bar:" + this.getName() + "\n");
     }
 
     private void drinking(Animations animation) throws InterruptedException {
-        System.out.print("Comecando a beber:" + this.getName() + "\n");
+//        System.out.print("Comecando a beber:" + this.getName() + "\n");
         animation.goBar(this.getName());
         sleep(tempo_bar);
-        System.out.print("Terminou de beber:" + this.getName() + "\n");
+//        System.out.print("Terminou de beber:" + this.getName() + "\n");
     }
 
 }
