@@ -14,6 +14,7 @@ class Bar(chairCount: Int) {
 
     var sitting = 0
     var waiting = 0
+    var full = false
 
     fun enter(callback: (willWait: Boolean) -> Unit) {
         mutex.acquire()

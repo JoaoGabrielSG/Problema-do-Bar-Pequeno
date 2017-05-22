@@ -6,7 +6,7 @@ package barproblem
 
 import java.util.*
 
-class ClientThread(name: String, bar: Bar, sittingDuration: Long): Thread(name) {
+class ClientThread(name: String, bar: Bar, sittingDuration: Long, sleepingDuration: Long): Thread(name) {
 
     enum class State {
         Outside,
@@ -21,49 +21,62 @@ class ClientThread(name: String, bar: Bar, sittingDuration: Long): Thread(name) 
     var state: State = State.Outside
         private set
 
-    var satTime = -1L
-        private set
-
     var sittingDuration = sittingDuration
+    var sleepingDuration = sleepingDuration
+
+    var scratchTime = 0L
 
     fun scratch(duration: Long) {
         val time = Date().time
-        while (Date().time < time + duration) { ; }
+        while (Date().time < time + duration) {
+            scratchTime = (time + duration) - Date().time
+        }
     }
 
     var onEnterBar: (() -> Unit)? = null
-    fun enterBar() {
-        state = State.Waiting
-        onEnterBar?.invoke()
-    }
 
     var onLeaveBar: (() -> Unit)? = null
-    fun leaveBar() {
-        bar.leave()
-        this.state = State.Left
-        onLeaveBar?.invoke()
-    }
 
-    var willSit: (() -> Unit)? = null
-    var onSit: ((chair: Int) -> Unit)? = null
-    private fun waitForSeat(callback: (() -> Unit)? = null) {
-
-        bar.enter { willWait ->
-            if(willWait) {
-                this.state = State.Waiting
-            }
-        }
-
-        this.state = State.Seated
-        onSit?.invoke(bar.sitting)
-
-        callback?.invoke()
-    }
+    var onSit: (() -> Unit)? = null
 
     override fun run() {
-        waitForSeat {
+
+        while (true) {
+            bar.mutex.acquire()
+
+            if (bar.full) {
+                bar.waiting += 1
+
+                state = State.Waiting
+                onEnterBar?.invoke()
+                bar.mutex.release()
+                bar.block.acquire()
+            } else {
+                bar.sitting += 1
+                bar.full = bar.sitting == 5
+                bar.mutex.release()
+            }
+
+            this.state = State.Seated
+            onSit?.invoke()
             scratch(sittingDuration)
-            leaveBar()
+
+            bar.mutex.acquire()
+
+            bar.sitting -= 1
+            if (bar.sitting == 0) {
+                val n = if (5 < bar.waiting) 5 else bar.waiting
+                bar.waiting -= n
+                bar.sitting += n
+
+                bar.full = bar.sitting == 5
+                bar.block.release(n)
+            }
+            bar.mutex.release()
+
+            this.state = State.Left
+            onLeaveBar?.invoke()
+            scratch(sleepingDuration)
         }
     }
 }
