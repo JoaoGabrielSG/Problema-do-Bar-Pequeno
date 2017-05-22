@@ -28,7 +28,7 @@ class Client: Entity() {
 
         sprite.view.addNode(Rectangle(32.0, 32.0, Color.ALICEBLUE))
 
-        nameLabel.layoutY = -40.0
+        nameLabel.layoutY = -20.0
         nameLabel.textFill = Color.WHITE
         sprite.view.addNode(nameLabel)
 
