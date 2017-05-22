@@ -41,15 +41,23 @@ public class Controller{
     public Animations animation = new Animations() {
         @Override
         public void goBar(ClientThread client) {
-            System.out.print("Comecando a beber:" + client.getName() + "\n");
+            System.out.print("Comecando a beber:" + client.getName() + client.clienteSprite.getTranslateX() + "\n");
 
-            client.clienteSprite.setTranslateX(200.0);
+            int clientsInBar = ClientThread.eating;
+
+            System.out.print(clientsInBar + "\n");
+
+            client.clienteSprite.setTranslateX(BarPositions.values()[clientsInBar].x);
+            client.clienteSprite.setTranslateX(BarPositions.values()[clientsInBar].y);
+
+
+            System.out.print(client.getName() + BarPositions.values()[clientsInBar].x + "\n");
         }
 
         @Override
         public void goHome(ClientThread client) {
 
-            System.out.print("Esta indo para casa:" + client.getName() + "\n");
+//            System.out.print("Esta indo para casa:" + client.getName() + "\n");
 
             client.clienteSprite.setTranslateX(300.0);
         }

@@ -9,8 +9,8 @@ import javafx.scene.shape.*;
  */
 public class ClientThread extends Thread {
 
-    int eating;
-    int waiting;
+    public static int eating;
+    public static int waiting;
     int tempo_bar;
     int tempo_casa;
     boolean must_wait;
@@ -97,19 +97,23 @@ public class ClientThread extends Thread {
         SimpleDateFormat time = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         long start = time.getCalendar().getTimeInMillis();
 
-        while ((time.getCalendar().getTimeInMillis() - start) < (long) tempo_casa && eating < 5) {
+        while ((time.getCalendar().getTimeInMillis() - start) < (long) tempo_casa) {
 
             time = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         }
-        animation.goHome(this);
+        animation.goHome(client);
     }
 
 
     private void drinking(ClientThread client) throws InterruptedException {
-//        System.out.print("Comecando a beber:" + this.getName() + "\n");
-        animation.goBar(this);
-        sleep(tempo_bar);
-//        System.out.print("Terminou de beber:" + this.getName() + "\n");
-    }
 
+        SimpleDateFormat time = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        long start = time.getCalendar().getTimeInMillis();
+
+        while ((time.getCalendar().getTimeInMillis() - start) < (long) tempo_casa && eating < 5) {
+
+            time = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        }
+        animation.goBar(client);
+    }
 }
