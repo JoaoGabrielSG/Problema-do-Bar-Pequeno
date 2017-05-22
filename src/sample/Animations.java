@@ -7,4 +7,5 @@ public interface Animations {
 
     void goBar(ClientThread client);
     void goHome(ClientThread client);
+    void goLine(ClientThread client);
 }

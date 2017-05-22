@@ -39,6 +39,15 @@ public class Controller{
     private javafx.scene.control.TextField tempoBar;
 
     public Animations animation = new Animations() {
+
+        @Override
+        public void goLine(ClientThread client) {
+            int clientsInBar = ClientThread.waiting;
+
+            client.clienteSprite.setTranslateX(BarPositions.values()[clientsInBar].x);
+            client.clienteSprite.setTranslateY(BarPositions.values()[clientsInBar].y);
+        }
+
         @Override
         public void goBar(ClientThread client) {
             System.out.print("Comecando a beber:" + client.getName() + client.clienteSprite.getTranslateX() + "\n");
@@ -48,7 +57,7 @@ public class Controller{
             System.out.print(clientsInBar + "\n");
 
             client.clienteSprite.setTranslateX(BarPositions.values()[clientsInBar].x);
-            client.clienteSprite.setTranslateX(BarPositions.values()[clientsInBar].y);
+            client.clienteSprite.setTranslateY(BarPositions.values()[clientsInBar].y);
 
 
             System.out.print(client.getName() + BarPositions.values()[clientsInBar].x + "\n");
@@ -67,7 +76,6 @@ public class Controller{
     public void initialize() {
 
         myButton.setOnAction((ActionEvent event) -> {
-
             ClientThread cliente = new ClientThread(name.getText(), Integer.parseInt(tempoBar.getText()), Integer.parseInt(tempoCasa.getText()), animation);
 
             cliente.start();

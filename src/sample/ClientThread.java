@@ -56,6 +56,7 @@ public class ClientThread extends Thread {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                animation.goLine(this);
             }else {
                 eating += 1;
                 must_wait = (eating == 5);

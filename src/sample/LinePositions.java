@@ -5,9 +5,11 @@ package sample;
  */
 public enum LinePositions {
 
-    first(100.0, 100.0),
-    second(200.0, 100.0),
-    third(300.0, 100.0);
+    first(-200.0, 50.0),
+    second(-200.0, 100.0),
+    third(-200.0, 150.0),
+    fourth(100.0, 200.0),
+    fiveth(100.0, 250.0);
 
     double x;
     double y;
