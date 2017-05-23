@@ -2,6 +2,8 @@ package sample;
 
 import java.text.SimpleDateFormat;
 import java.util.concurrent.Semaphore;
+
+import javafx.application.Platform;
 import javafx.scene.shape.*;
 
 /**
@@ -56,7 +58,9 @@ public class ClientThread extends Thread {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                animation.goLine(this);
+                Platform.runLater(() -> {
+                    animation.goLine(this);
+                });
             }else {
                 eating += 1;
                 must_wait = (eating == 5);
@@ -82,7 +86,7 @@ public class ClientThread extends Thread {
                 eating += n;
 
                 must_wait = (eating == 5);
-                mutex2.release();
+                mutex2.release(n);
             }
             mutex1.release();
 
@@ -102,7 +106,10 @@ public class ClientThread extends Thread {
 
             time = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         }
-        animation.goHome(client);
+
+        Platform.runLater(() -> {
+            animation.goHome(client);
+        });
     }
 
 
@@ -115,6 +122,9 @@ public class ClientThread extends Thread {
 
             time = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         }
-        animation.goBar(client);
+
+        Platform.runLater(() -> {
+            animation.goBar(client);
+        });
     }
 }

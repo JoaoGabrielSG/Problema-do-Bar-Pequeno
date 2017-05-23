@@ -83,14 +83,4 @@ public class Controller{
             anchor.getChildren().add(cliente.clienteSprite);
         });
     }
-
-//    public void goBar(){
-////        FadeTransition ft;
-////        ft = new FadeTransition(Duration.millis(3000), yuri);
-////        ft.setFromValue(1.0);
-////        ft.setToValue(100);
-////        ft.setCycleCount(Timeline.INDEFINITE);
-////        ft.setAutoReverse(true);
-////        ft.play();
-//    }
 }
