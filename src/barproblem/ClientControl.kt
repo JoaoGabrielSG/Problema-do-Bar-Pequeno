@@ -52,7 +52,7 @@ class ClientControl(name: String, bar: Bar, sittingDuration: Long, sleepingDurat
             var x = ThreadLocalRandom.current().nextDouble(-100.0, 100.0)
             var y = ThreadLocalRandom.current().nextDouble(-100.0, 100.0)
 
-            sleep_point = Point2D(700.0 + x, 600.0 + y)
+            sleep_point = Point2D(700.0 + x, 400.0 + y)
         }
 
         thread.start()

@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/barproblem/Client.kt" afterPath="$PROJECT_DIR$/src/barproblem/Client.kt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/barproblem/Bar.kt" afterPath="$PROJECT_DIR$/src/barproblem/Bar.kt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/barproblem/ClientControl.kt" afterPath="$PROJECT_DIR$/src/barproblem/ClientControl.kt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/barproblem/ClientThread.kt" afterPath="$PROJECT_DIR$/src/barproblem/ClientThread.kt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/barproblem/Game.kt" afterPath="$PROJECT_DIR$/src/barproblem/Game.kt" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,18 +78,18 @@
       <file leaf-file-name="ClientThread.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/ClientThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="65" column="42" lean-forward="true" selection-start-line="65" selection-start-column="42" selection-end-line="65" selection-end-column="42" />
+            <state relative-caret-position="367">
+              <caret line="28" column="39" lean-forward="true" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.kt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Game.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/barproblem/Game.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="115" column="13" lean-forward="true" selection-start-line="115" selection-start-column="13" selection-end-line="115" selection-end-column="13" />
+            <state relative-caret-position="862">
+              <caret line="150" column="45" lean-forward="true" selection-start-line="150" selection-start-column="45" selection-end-line="150" selection-end-column="45" />
               <folding>
                 <element signature="e#70#924#0" expanded="true" />
               </folding>
@@ -105,14 +109,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientControl.kt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ClientControl.kt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/barproblem/ClientControl.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-386">
-              <caret line="35" column="47" lean-forward="false" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="47" />
+            <state relative-caret-position="294">
+              <caret line="54" column="46" lean-forward="false" selection-start-line="54" selection-start-column="46" selection-end-line="54" selection-end-column="46" />
               <folding>
                 <element signature="e#70#301#0" expanded="true" />
-                <marker date="1495489173000" expanded="false" signature="77:236" ph="..." />
+                <marker date="1495564540000" expanded="false" signature="77:236" ph="..." />
               </folding>
             </state>
           </provider>
@@ -121,8 +125,8 @@
       <file leaf-file-name="Client.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/barproblem/Client.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="28" column="52" lean-forward="false" selection-start-line="28" selection-start-column="52" selection-end-line="28" selection-end-column="52" />
+            <state relative-caret-position="-17">
+              <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
               <folding>
                 <element signature="e#20#238#0" expanded="true" />
               </folding>
@@ -133,8 +137,8 @@
       <file leaf-file-name="ClientThread.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/barproblem/ClientThread.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+            <state relative-caret-position="196">
+              <caret line="74" column="31" lean-forward="true" selection-start-line="74" selection-start-column="31" selection-end-line="74" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -143,8 +147,8 @@
       <file leaf-file-name="Bar.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/barproblem/Bar.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+            <state relative-caret-position="25">
+              <caret line="11" column="15" lean-forward="true" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -190,6 +194,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>onSit</find>
+      <find>5</find>
       <find>bar</find>
     </findStrings>
     <dirStrings>
@@ -228,12 +233,12 @@
         <option value="$PROJECT_DIR$/src/barproblem/ClientViewController.kt" />
         <option value="$PROJECT_DIR$/src/barproblem/ViewController.kt" />
         <option value="$PROJECT_DIR$/src/sample/ClientThread.java" />
-        <option value="$PROJECT_DIR$/src/barproblem/Bar.kt" />
-        <option value="$PROJECT_DIR$/src/barproblem/ClientThread.kt" />
         <option value="$PROJECT_DIR$/src/barproblem/Main.kt" />
-        <option value="$PROJECT_DIR$/src/barproblem/ClientControl.kt" />
-        <option value="$PROJECT_DIR$/src/barproblem/Game.kt" />
         <option value="$PROJECT_DIR$/src/barproblem/Client.kt" />
+        <option value="$PROJECT_DIR$/src/barproblem/ClientThread.kt" />
+        <option value="$PROJECT_DIR$/src/barproblem/Bar.kt" />
+        <option value="$PROJECT_DIR$/src/barproblem/Game.kt" />
+        <option value="$PROJECT_DIR$/src/barproblem/ClientControl.kt" />
       </list>
     </option>
   </component>
@@ -705,7 +710,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27371696" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27371696" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0882353" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1115,22 +1120,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/barproblem/Bar.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/barproblem/ClientThread.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1139,31 +1128,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClientThread.java">
+    <entry file="file://$PROJECT_DIR$/src/barproblem/ClientThread.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="65" column="42" lean-forward="true" selection-start-line="65" selection-start-column="42" selection-end-line="65" selection-end-column="42" />
+        <state relative-caret-position="196">
+          <caret line="74" column="31" lean-forward="true" selection-start-line="74" selection-start-column="31" selection-end-line="74" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/barproblem/Bar.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="11" column="15" lean-forward="true" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/barproblem/Client.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="28" column="52" lean-forward="false" selection-start-line="28" selection-start-column="52" selection-end-line="28" selection-end-column="52" />
+        <state relative-caret-position="-17">
+          <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
           <folding>
             <element signature="e#20#238#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/barproblem/ClientControl.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-386">
-          <caret line="35" column="47" lean-forward="false" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="47" />
-          <folding>
-            <element signature="e#70#301#0" expanded="true" />
-            <marker date="1495489173000" expanded="false" signature="77:236" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1178,12 +1164,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ClientThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="28" column="39" lean-forward="true" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/barproblem/Game.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="115" column="13" lean-forward="true" selection-start-line="115" selection-start-column="13" selection-end-line="115" selection-end-column="13" />
+        <state relative-caret-position="862">
+          <caret line="150" column="45" lean-forward="true" selection-start-line="150" selection-start-column="45" selection-end-line="150" selection-end-column="45" />
           <folding>
             <element signature="e#70#924#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/barproblem/ClientControl.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="54" column="46" lean-forward="false" selection-start-line="54" selection-start-column="46" selection-end-line="54" selection-end-column="46" />
+          <folding>
+            <element signature="e#70#301#0" expanded="true" />
+            <marker date="1495564540000" expanded="false" signature="77:236" ph="..." />
           </folding>
         </state>
       </provider>

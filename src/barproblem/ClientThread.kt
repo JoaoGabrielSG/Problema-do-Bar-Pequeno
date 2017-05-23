@@ -53,7 +53,7 @@ class ClientThread(name: String, bar: Bar, sittingDuration: Long, sleepingDurati
                 bar.block.acquire()
             } else {
                 bar.sitting += 1
-                bar.full = bar.sitting == 5
+                bar.full = bar.sitting == bar.chairCount
                 bar.mutex.release()
             }
 
@@ -65,11 +65,11 @@ class ClientThread(name: String, bar: Bar, sittingDuration: Long, sleepingDurati
 
             bar.sitting -= 1
             if (bar.sitting == 0) {
-                val n = if (5 < bar.waiting) 5 else bar.waiting
+                val n = if (5 < bar.waiting) bar.chairCount else bar.waiting
                 bar.waiting -= n
                 bar.sitting += n
 
-                bar.full = bar.sitting == 5
+                bar.full = bar.sitting == bar.chairCount
                 bar.block.release(n)
             }
             bar.mutex.release()

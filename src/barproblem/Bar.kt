@@ -7,7 +7,7 @@ import java.util.*
 import java.util.concurrent.Semaphore
 
 class Bar(chairCount: Int) {
-    val chairCount = chairCount
+    var chairCount = chairCount
 
     var mutex = Semaphore(1)
     var block = Semaphore(0)

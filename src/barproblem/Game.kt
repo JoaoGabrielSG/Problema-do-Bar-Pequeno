@@ -132,24 +132,44 @@ class Game : GameApplication() {
                 nameTextField.text = names[ThreadLocalRandom.current().nextInt(0, names.count())]
             }
 
+
             val vbox = VBox()
-            vbox.children.add(Label("nome"))
-            vbox.children.add(nameTextField)
-            vbox.children.add(Label("tempo sentado"))
-            vbox.children.add(sittingTimeTextField)
-            vbox.children.add(Label("tempo em casa"))
-            vbox.children.add(sleepingTimeTextField)
+            vbox.children.add(Label("cadeiras"))
 
             val hbox = HBox()
-            hbox.children.add(button)
-            hbox.children.add(randb)
+            val okb = Button("OK")
+            val chairTextField = TextField("5")
+            hbox.children.add(chairTextField)
+            hbox.children.add(okb)
 
             vbox.children.add(hbox)
 
-            val scene = Scene(vbox)
+            val barScene = Scene(vbox)
+
+            val vbox2 = VBox()
+            vbox2.children.add(Label("nome"))
+            vbox2.children.add(nameTextField)
+            vbox2.children.add(Label("tempo sentado"))
+            vbox2.children.add(sittingTimeTextField)
+            vbox2.children.add(Label("tempo em casa"))
+            vbox2.children.add(sleepingTimeTextField)
+
+            val hbox2 = HBox()
+            hbox2.children.add(button)
+            hbox2.children.add(randb)
+
+            vbox2.children.add(hbox2)
+
+            val clientScene = Scene(vbox2)
 
             val stage = Stage(StageStyle.UTILITY)
-            stage.scene = scene
+            stage.scene = barScene
+
+            okb.setOnAction {
+                bar.chairCount = chairTextField.text.toInt()
+                stage.scene = clientScene
+            }
+
             stage.show()
         }
     }
